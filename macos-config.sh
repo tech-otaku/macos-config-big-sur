@@ -7,8 +7,18 @@
 
 # macOS Big Sur 11.0
 
+# Is macOS installed as a VMware guest OS?
+    if [[ $(system_profiler SPHardwareDataType | awk '/Model Identifier/ {print tolower($3)}') == *"vmware"* ]]; then
+        VM=true
+    fi
+
 #IMAGEFILE="$HOME/macos-config-big-sur-master/Photos/steve-colour.jpg"
-DESKTOP="desert"
+    if [ -z $VM ];then
+        DESKTOP="desert"
+    else
+        # This is a VMware guest OS
+        DESKTOP="beach"
+    fi
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -87,10 +97,9 @@ EOD
 # Some settings are dependant on the computer model. ModelName is used to decide which settings are appropriate.
     ModelName=$(system_profiler SPHardwareDataType | awk '/Model Name/ {print tolower($3)}')
 
-# On a VMware VM ModelName will be set to "mac", not "imac". Set to "imac" if this is the case.
-    if [[ $(system_profiler SPHardwareDataType | awk '/Model Identifier/ {print tolower($3)}') == *"vmware"* ]]; then
+    if [ ! -z $VM ]; then
+        # This is a VMware guest OS
         ModelName="imac"
-        DESKTOP="beach"
     fi
 
 	ShowKeyboardEmojiViewer () {
@@ -630,19 +639,24 @@ echo "...Trackpad"
 
 # System Preferences > Sharing > Computer Name:
     if [ "$ModelName" == "imac" ]; then
-        # Computer Name
-        sudo scutil --set ComputerName "Steve’s iMac 27\" 5K"   # 0x5374657665277320694d61632032372220354b in Hex
 
-        # Shell prompt
-        sudo scutil --set HostName "Steves-iMac-27-5K"          # 0x5374657665732d694d61632d32372d354b in Hex
+        if [ -z $VM ]; then
+        # This is NOT a VMware guest OS
+            # Computer Name
+            sudo scutil --set ComputerName "Steve’s iMac 27\" 5K"   # 0x5374657665277320694d61632032372220354b in Hex
 
-        # Bonjour Name
-        sudo scutil --set LocalHostName "Steves-iMac-27-5K"     # 0x5374657665732d694d61632d32372d354b in Hex
+            # Shell prompt
+            sudo scutil --set HostName "Steves-iMac-27-5K"          # 0x5374657665732d694d61632d32372d354b in Hex
 
-    # `NetBIOSName` is currently set automatically to `IMAC-1C061E`. Do not overwrite it.
-        #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
-    # 'ServerDescription' is currently set automatically to `Steve's iMac 27" 5K`. Do not overwrite it.
-        #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server ServerDescription -string "0x6D746873"
+            # Bonjour Name
+            sudo scutil --set LocalHostName "Steves-iMac-27-5K"     # 0x5374657665732d694d61632d32372d354b in Hex
+
+        # `NetBIOSName` is currently set automatically to `IMAC-1C061E`. Do not overwrite it.
+            #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
+        # 'ServerDescription' is currently set automatically to `Steve's iMac 27" 5K`. Do not overwrite it.
+            #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server ServerDescription -string "0x6D746873"
+
+        fi
 
     elif [ "$ModelName" == "macbook" ]; then
         # Computer Name
