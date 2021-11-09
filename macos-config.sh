@@ -86,7 +86,12 @@ EOD
 
 # Some settings are dependant on the computer model. ModelName is used to decide which settings are appropriate.
     ModelName=$(system_profiler SPHardwareDataType | awk '/Model Name/ {print tolower($3)}')
-    
+
+# On a VMware VM ModelName will be set to "mac", not "imac". Set to "imac" if this is the case.
+    if [[ $(system_profiler SPHardwareDataType | awk '/Model Identifier/ {print tolower($3)}') == *"vmware"* ]]; then
+        ModelName="imac"
+        DESKTOP="beach"
+    fi
 
 	ShowKeyboardEmojiViewer () {
 	
