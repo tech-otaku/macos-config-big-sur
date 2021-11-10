@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
-# USAGE: [bash] ${HOME}/macos-config-big-sur-master/macos-config.sh
+# USAGE: [bash] ${HOME}/macos-config-big-sur-main/macos-config.sh
 
 # NSGlobalDomain is synonymous with .GlobalPreferences
 # '-g' and '-globalDomain' can be used as synonyms for NSGlobalDomain or .GlobalPreferences
 
 # macOS Big Sur 11.0
 
-#IMAGEFILE="$HOME/macos-config-big-sur-master/Photos/steve-colour.jpg"
 
 
 
@@ -639,7 +638,7 @@ echo "...Trackpad"
     if [ "$ModelName" == "imac" ]; then
 
         if [ -z $VM ]; then   # NOT a guest OS in a VMware VM
-        
+
             # Computer Name
                 sudo scutil --set ComputerName "Steve’s iMac 27\" 5K"   # 0x5374657665277320694d61632032372220354b in Hex
 
