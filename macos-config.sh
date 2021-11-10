@@ -5,7 +5,7 @@
 # NSGlobalDomain is synonymous with .GlobalPreferences
 # '-g' and '-globalDomain' can be used as synonyms for NSGlobalDomain or .GlobalPreferences
 
-# macOS Big Sur 11.0
+# macOS 11 Big Sur
 
 
 
@@ -241,7 +241,7 @@ EOD
 
 
 # System Preferences > General > Default web browser
-    # GUI Scripting: /Users/steve/macos-config-catalina-master/Scripts/Config All.scpt
+    # GUI Scripting: ./Scripts/Config\ All.scpt <delay-interval>
 
 
 # System Preferences > General > Prefer tabs: <never|in full screen|always> when opening documents
@@ -272,15 +272,15 @@ EOD
 
 
 # System Preferences > General > Recent items
-    # GUI Scripting: /Users/steve/macos-config-catalina-master/Scripts/Config All.scpt
+    # GUI Scripting: ./Scripts/Config\ All.scpt <delay-interval>
 
 
 # System Preferences > General > Allow Handoff between this Mac and your iCloud devices
-    # GUI Scripting: /Users/steve/macos-config-catalina-master/Scripts/Config All.scpt
+    # GUI Scripting: ./Scripts/Config\ All.scpt <delay-interval>
 
 
 # System Preferences > General > Use font smoothing when available
-    # GUI Scripting: /Users/steve/macos-config-catalina-master/Scripts/Config All.scpt
+    # GUI Scripting: ./Scripts/Config\ All.scpt <delay-interval>
 
 echo "Configured System Preferences..."
 echo "...General"
@@ -867,11 +867,11 @@ echo "...Date & Time"
 # Finder > View > Show|Hide Tab Bar
     # Show
         #defaults write com.apple.finder NSWindowTabbingShoudShowTabBarKey-com.apple.finder.TBrowserWindow -bool true    # Spelling mistake 'Shoud' instead of 'Should' courtesy of Apple!
-        #defaults write com.apple.finder ShowTabView -bool true            # Prior to  macOS Catalina 
+        #defaults write com.apple.finder ShowTabView -bool true                # Prior to  macOS 10.15 Catalina 
     
     # Hide
         defaults write com.apple.finder NSWindowTabbingShoudShowTabBarKey-com.apple.finder.TBrowserWindow -bool false    # Spelling mistake 'Shoud' instead of 'Should' courtesy of Apple!
-        #defaults write com.apple.finder ShowTabView -bool false        # Prior to  macOS Catalina
+        #defaults write com.apple.finder ShowTabView -bool false               # Prior to  macOS 10.15 Catalina
 
 
 # Finder > View > Show|Hide Path Bar
@@ -1214,10 +1214,10 @@ echo "Configured Finder Icon View Settings"
     if [ "$ModelName" == "imac" ]; then
     
         # System Preferences > Bluetooth > Show Bluetooth in menu bar [checked]
-            #open /System/Library/CoreServices/Menu\ Extras/Bluetooth.menu                              # * * * Doesn't exist in Big Sur 11.0  * * *
+            #open /System/Library/CoreServices/Menu\ Extras/Bluetooth.menu                              # * * * Doesn't exist in macOS 11 Big Sur  * * *
             
         # System Preferences > Date & Time > Clock > Show date and time in menu bar [checked]
-            #open /System/Library/CoreServices/Menu\ Extras/Clock.menu                                  # * * * Doesn't exist in Big Sur 11.0  * * *
+            #open /System/Library/CoreServices/Menu\ Extras/Clock.menu                                  # * * * Doesn't exist in macOS 11 Big Sur  * * *
             
         # System Preferences > Keyboard > Input Sources > Show Input menu in menu bar [checked]
             defaults write com.apple.TextInputMenu visible -bool true                                   # Comment-out for unchecked
@@ -1229,13 +1229,13 @@ echo "Configured Finder Icon View Settings"
             open /System/Library/CoreServices/Menu\ Extras/AirPort.menu                                 # Comment-out for unchecked
 
           # System Preferences > Network > Show VPN status in menu bar [checked]
-            #open /System/Library/CoreServices/Menu\ Extras/VPN.menu                                    # * * * Doesn't exist in Big Sur 11.0  * * *
+            #open /System/Library/CoreServices/Menu\ Extras/VPN.menu                                    # * * * Doesn't exist in macOS 11 Big Sur  * * *
             
         # System Preferences > Time Machine > Show Time Machine in menu bar [checked]
             open /System/Library/CoreServices/Menu\ Extras/TimeMachine.menu                             # Comment-out for unchecked
         
         # System Preferences > Volume > Show volume in menu bar [checked] 
-            #open /System/Library/CoreServices/Menu\ Extras/Volume.menu                                 # * * * Doesn't exist in Big Sur 11.0  * * *
+            #open /System/Library/CoreServices/Menu\ Extras/Volume.menu                                 # * * * Doesn't exist in macOS 11 Big Sur  * * *
         
         # Script Editor > Preferences > General > Script Menu: Show Script menu in menu bar
             open /System/Library/CoreServices/Script\ Menu.app                                          # Comment-out for unchecked 
@@ -1246,13 +1246,13 @@ echo "Configured Finder Icon View Settings"
         # Wi-Fi, Battery, Clock, Spotlight and Notifications are visible by default.  
     
         # System Preferences > Bluetooth > Show Bluetooth in menu bar [checked]
-            #open /System/Library/CoreServices/Menu\ Extras/Bluetooth.menu                              # * * * Doesn't exist in Big Sur 11.0  * * *
+            #open /System/Library/CoreServices/Menu\ Extras/Bluetooth.menu                              # * * * Doesn't exist in macOS 11 Big Sur  * * *
 
         # System Preferences > Date & Time > Clock > Show date and time in menu bar [checked]
-            #open /System/Library/CoreServices/Menu\ Extras/Clock.menu                                  # * * * Doesn't exist in Big Sur 11.0  * * *
+            #open /System/Library/CoreServices/Menu\ Extras/Clock.menu                                  # * * * Doesn't exist in macOS 11 Big Sur  * * *
 
         # System Preferences > Energy Saver > Show battery status in menu bar [checked]
-            #open /System/Library/CoreServices/Menu\ Extras/Battery.menu                                # * * * Doesn't exist in Big Sur 11.0  * * *
+            #open /System/Library/CoreServices/Menu\ Extras/Battery.menu                                # * * * Doesn't exist in macOS 11 Big Sur  * * *
 
         # System Preferences > Keyboard > Input Sources > Show Input menu in menu bar [checked]
             defaults write com.apple.TextInputMenu visible -bool true                                   # Comment-out for unchecked
@@ -1264,13 +1264,13 @@ echo "Configured Finder Icon View Settings"
             open /System/Library/CoreServices/Menu\ Extras/AirPort.menu                                 # Comment-out for unchecked
 
         # System Preferences > Network > Show VPN status in menu bar [checked]         
-            #open /System/Library/CoreServices/Menu\ Extras/VPN.menu                                    # * * * Doesn't exist in Big Sur 11.0  * * *
+            #open /System/Library/CoreServices/Menu\ Extras/VPN.menu                                    # * * * Doesn't exist in macOS 11 Big Sur  * * *
 
         # System Preferences > Time Machine > Show Time Machine in menu bar [checked]        
             open /System/Library/CoreServices/Menu\ Extras/TimeMachine.menu                             # Comment-out for unchecked
 
         # System Preferences > Volume > Show volume in menu bar [checked] 
-            #open /System/Library/CoreServices/Menu\ Extras/Volume.menu                                 # * * * Doesn't exist in Big Sur 11.0  * * *
+            #open /System/Library/CoreServices/Menu\ Extras/Volume.menu                                 # * * * Doesn't exist in macOS 11 Big Sur  * * *
 
     fi
 
