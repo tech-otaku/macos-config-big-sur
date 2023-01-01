@@ -160,12 +160,13 @@ main () {	# See https://stackoverflow.com/questions/13588457/forward-function-de
                 move_directory_entry "D" "$SOURCE/.config/op" "/Users/steve/.config/op"
             fi
 			;;
-		finderatt)		# A Better Finder Attributes 6.app
-			move_directory_entry "F" "$SOURCE/Library/Preferences/net.publicspace.abfa6.plist" "/Users/steve/Library/Preferences/net.publicspace.abfa6.plist"
+		finderatt)		# A Better Finder Attributes 7.app
+            move_directory_entry "D" "$SOURCE/Library/Preferences/ABFSS Registration" "/Users/steve/Library/Preferences/ABFSS Registration"
+			move_directory_entry "F" "$SOURCE/Library/Preferences/net.publicspace.abfa7.plist" "/Users/steve/Library/Preferences/net.publicspace.abfa7.plist"
 			;;
-		finderren) 		# A Better Finder Rename 10.app
-			move_directory_entry "D" "$SOURCE/Library/Application Support/A Better Finder Rename 10" "/Users/steve/Library/Application Support/A Better Finder Rename 10"
-			move_directory_entry "F" "$SOURCE/Library/Preferences/net.publicspace.abfr10.plist" "/Users/steve/Library/Preferences/net.publicspace.abfr10.plist"
+		finderren) 		# A Better Finder Rename 11.app
+			move_directory_entry "D" "$SOURCE/Library/Application Support/A Better Finder Rename 11" "/Users/steve/Library/Application Support/A Better Finder Rename 11"
+			move_directory_entry "F" "$SOURCE/Library/Preferences/net.publicspace.abfr11.plist" "/Users/steve/Library/Preferences/net.publicspace.abfr11.plist"
 			;;
 		adguard)		# AdGuard.app
 			move_directory_entry "D" "$SOURCE/Library/Group Containers/TC3Q7MAJXF.com.adguard.mac" "/Users/steve/Library/Group Containers/TC3Q7MAJXF.com.adguard.mac"
@@ -576,18 +577,28 @@ main () {	# See https://stackoverflow.com/questions/13588457/forward-function-de
 			;;
 		# * * * * MISCELLANEOUS * * * *
 		bash)
-			#create_symbolic_link "/Users/steve/Dropbox/.bash_history_shared" "/Users/steve/.bash_history"
-            if [ -f "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/bash/.bash_profile" ]; then
-                create_symbolic_link "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/bash/.bash_profile" "${HOME}/.bash_profile"
+            if [ -f "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/.bash/.bash_logout" ] && \
+            [ -f "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/.bash/.bash_profile" ] && \
+            [ -f "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/.bash/.bashrc" ] && \
+            [ -f "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/.bash/.profile" ]; then
+                create_symbolic_link "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/.bash/.bash_logout" "${HOME}/.bash_logout"
+                create_symbolic_link "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/.bash/.bash_profile" "${HOME}/.bash_profile"
+                create_symbolic_link "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/.bash/.bashrc" "${HOME}/.bashrc"
+                create_symbolic_link "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/.bash/.profile" "${HOME}/.profile"
                 if [ -f "$SOURCE/.hushlogin" ]; then
                     move_directory_entry "F" "$SOURCE/.hushlogin" "${HOME}/.hushlogin"
+                fi
+                if [ -f "$SOURCE/.profile" ]; then
+                    move_directory_entry "F" "$SOURCE/.profile" "${HOME}/.profile"
                 fi
             else
                 echo "* * * * iCloud has not finished downloading yet. Please try again later * * * *"
             fi
-			;;
+            ;;
 		zsh)
-            if [ -f "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/zsh/.zsh_history" ]; then
+            if [ -f "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/.zsh/.zsh_history" ] && \
+            [ -d "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/.zsh/.zsh_sessions" ] && \
+            [ -f "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/.zsh/.zshrc" ]~; then
                 move_directory_entry "F" "$SOURCE/.zshenv" "${HOME}/.zshenv"
                 if [ -f "$SOURCE/.hushlogin" ]; then 
                     move_directory_entry "F" "$SOURCE/.hushlogin" "${HOME}/.hushlogin"
@@ -595,7 +606,7 @@ main () {	# See https://stackoverflow.com/questions/13588457/forward-function-de
             else
                 echo "* * * * iCloud has not finished downloading yet. Please try again later * * * *"
             fi
-			;;
+            ;;
 		fonts)
 			move_directory_entry "D" "$SOURCE/Library/Fonts" "/Users/steve/Library/Fonts"
 			;;
